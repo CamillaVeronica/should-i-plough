@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Should I Plough?</title>
+    <style>
+        /* Basic styling for layout */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        #controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        select, button, input[type="checkbox"] {
+            margin: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            text-align: center;
+        }
+        #result-text {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        #result-gif {
+            max-width: 300px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Should I Plough?</h1>
+    <div id="controls">
+        <label for="soil-type">Select your soil type:</label>
+        <select id="soil-type">
+            <option value="clay">Clay</option>
+            <option value="loam">Loam</option>
+            <option value="sandy">Sandy</option>
+        </select>
+        
+        <label for="weather-today">What is the weather today?</label>
+        <select id="weather-today">
+            <option value="Sunny">Sunny</option>
+            <option value="Windy">Windy</option>
+            <option value="Wet">Wet</option>
+            <option value="Frozen">Frozen</option>
+            <option value="Ideal">Ideal</option>
+        </select>
+        
+        <label for="recent-rain">How much rain has there been in the last few days?</label>
+        <select id="recent-rain">
+            <option value="None">None</option>
+            <option value="Light">Light</option>
+            <option value="Moderate">Moderate</option>
+            <option value="Heavy">Heavy</option>
+        </select>
+        
+        <label for="regen-toggle">Regen Mode</label>
+        <input type="checkbox" id="regen-toggle">
+        
+        <button onclick="checkPloughConditions()">Should I Plough?</button>
+    </div>
+    <div id="result">
+        <div id="result-text"></div>
+        <img id="result-gif" src="" alt="Response GIF" style="display: none;">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
