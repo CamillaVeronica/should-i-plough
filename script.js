@@ -108,3 +108,37 @@ async function getResponses(conditionKey, mode) {
         return [];
     }
 }
+
+// Console log
+async function getResponses(conditionKey, mode) {
+    const filterFormula = mode === 'regen' 
+        ? `{Mode}='regen'` 
+        : `AND({Condition Key}='${conditionKey}', {Mode}='standard')`;
+    
+    const url = `https://api.airtable.com/v0/${baseId}/Responses?filterByFormula=${encodeURIComponent(filterFormula)}`;
+    
+    try {
+        const response = await fetch(url, {
+            headers: { Authorization: `Bearer ${apiKey}` }
+        });
+        
+        if (!response.ok) {
+            console.error(`Error: ${response.status} - ${response.statusText}`);
+            return [];
+        }
+        
+        const data = await response.json();
+        
+        // Log data to check if records are being returned
+        console.log("Data from Airtable:", data);
+
+        return data.records.map(record => ({
+            text: record.fields["Text Response"],
+            gif: record.fields["GIF URL"]
+        }));
+    } catch (error) {
+        console.error("Fetch error:", error);
+        return [];
+    }
+}
+
