@@ -145,7 +145,7 @@ async function getResponses(conditionKey, mode) {
 async function checkPloughConditions() {
     const soil-type = document.getElementById('soil-type').value;
     const weather-today = document.getElementById('weather-today').value;
-    const recentRain = document.getElementById('recent-rain').value;
+    const recent-rain = document.getElementById('recent-rain').value;
     const mode = determineMode();
 
     // Log the values to check if they are what you expect
