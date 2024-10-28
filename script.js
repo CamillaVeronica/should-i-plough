@@ -142,3 +142,27 @@ async function getResponses(conditionKey, mode) {
     }
 }
 
+async function checkPloughConditions() {
+    const soilType = document.getElementById('soil-type').value;
+    const weatherToday = document.getElementById('weather-today').value;
+    const recentRain = document.getElementById('recent-rain').value;
+    const mode = determineMode();
+
+    // Log the values to check if they are what you expect
+    const conditionKey = mode === 'regen' ? null : determineConditionKey(soilType, weatherToday, recentRain);
+    console.log("Condition Key:", conditionKey, "Mode:", mode);
+    
+    const responses = await getResponses(conditionKey, mode);
+
+    if (responses.length > 0) {
+        const response = selectRandomResponse(responses);
+        document.getElementById('result-text').innerText = response.text;
+        document.getElementById('result-gif').src = response.gif;
+        document.getElementById('result-gif').style.display = 'block';
+    } else {
+        document.getElementById('result-text').innerText = "No response available.";
+        document.getElementById('result-gif').style.display = 'none';
+    }
+}
+
+
