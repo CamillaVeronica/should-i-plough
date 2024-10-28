@@ -77,3 +77,34 @@ async function checkPloughConditions() {
         document.getElementById('result-gif').style.display = 'none';
     }
 }
+
+// Run error logging
+async function getResponses(conditionKey, mode) {
+    const filterFormula = mode === 'regen' 
+        ? `{Mode}='regen'` 
+        : `AND({Condition Key}='${conditionKey}', {Mode}='standard')`;
+    
+    const url = `https://api.airtable.com/v0/${baseId}/Responses?filterByFormula=${encodeURIComponent(filterFormula)}`;
+    
+    try {
+        const response = await fetch(url, {
+            headers: { Authorization: `Bearer ${apiKey}` }
+        });
+        
+        if (!response.ok) {
+            console.error(`Error: ${response.status} - ${response.statusText}`);
+            const errorData = await response.json();
+            console.error("Error details:", errorData);
+            return [];
+        }
+        
+        const data = await response.json();
+        return data.records.map(record => ({
+            text: record.fields["Text Response"],
+            gif: record.fields["GIF URL"]
+        }));
+    } catch (error) {
+        console.error("Fetch error:", error);
+        return [];
+    }
+}
