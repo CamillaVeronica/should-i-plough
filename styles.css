@@ -1,0 +1,106 @@
+/* General page setup */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Initial full screen layout for controls */
+#controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    max-width: 400px;
+    transition: all 0.5s ease;
+}
+
+label {
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #ccc;
+}
+
+select, button, input[type="checkbox"] {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+    background-color: #333;
+    color: #fff;
+}
+
+button {
+    background-color: #666;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #888;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+    width: auto;
+}
+
+/* Result area setup */
+#result {
+    display: none; /* Initially hidden */
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+}
+
+#result-text {
+    font-size: 1.8em;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+#result-gif {
+    max-width: 100%;
+    border-radius: 8px;
+    border: 2px solid #333;
+}
+
+/* Minimized controls at top after selection */
+.controls-minimized #controls {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    background-color: #111;
+    justify-content: flex-start;
+}
+
+.controls-minimized label,
+.controls-minimized select,
+.controls-minimized button {
+    font-size: 0.8em;
+    max-width: 100px;
+    margin: 5px 0;
+}
+
+.controls-minimized #result {
+    display: block;
+}
