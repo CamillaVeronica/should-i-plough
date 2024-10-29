@@ -74,7 +74,8 @@ function selectRandomResponse(responses) {
 
 // Checks plough conditions and displays the appropriate response
 async function checkPloughConditions() {
-     console.clear(); // Clears previous logs on each button click
+    console.clear(); // Clears previous logs on each button click
+
     const soilType = document.getElementById('soil-type').value; // Uses kebab-case id
     const weatherToday = document.getElementById('weather-today').value; // Uses kebab-case id
     const recentRainfall = document.getElementById('recent-rain').value; // Uses kebab-case id
@@ -91,15 +92,12 @@ async function checkPloughConditions() {
         document.getElementById('result-text').innerText = response.text;
         document.getElementById('result-gif').src = response.gif;
         document.getElementById('result-gif').style.display = 'block';
-    } else {
-        document.getElementById('result-text').innerText = "No response available.";
-        document.getElementById('result-gif').style.display = 'none';
-    }
-}
 
-// Add the class to minimize controls and display the result area
+        // Minimize controls and display the result area
         document.body.classList.add('controls-minimized');
      else {
         document.getElementById('result-text').innerText = "No response available.";
         document.getElementById('result-gif').style.display = 'none';
+        }
     }
+}
