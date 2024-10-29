@@ -92,10 +92,10 @@ async function checkPloughConditions() {
         document.getElementById('result-text').innerText = response.text;
         document.getElementById('result-gif').src = response.gif;
         document.getElementById('result-gif').style.display = 'block';
-        }
+        
 
         // Minimize controls and display the result area
-        document.body.classList.add('controls-minimized');
+        document.body.classList.add('controls-minimized');}
      else {
         document.getElementById('result-text').innerText = "No response available.";
         document.getElementById('result-gif').style.display = 'none';
