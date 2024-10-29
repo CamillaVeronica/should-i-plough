@@ -74,6 +74,7 @@ function selectRandomResponse(responses) {
 
 // Checks plough conditions and displays the appropriate response
 async function checkPloughConditions() {
+     console.clear(); // Clears previous logs on each button click
     const soilType = document.getElementById('soil-type').value; // Uses kebab-case id
     const weatherToday = document.getElementById('weather-today').value; // Uses kebab-case id
     const recentRainfall = document.getElementById('recent-rain').value; // Uses kebab-case id
