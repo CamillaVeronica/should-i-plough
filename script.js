@@ -99,8 +99,7 @@ async function checkPloughConditions() {
 
 // Add the class to minimize controls and display the result area
         document.body.classList.add('controls-minimized');
-    } else {
+     else {
         document.getElementById('result-text').innerText = "No response available.";
         document.getElementById('result-gif').style.display = 'none';
     }
-}
