@@ -92,6 +92,7 @@ async function checkPloughConditions() {
         document.getElementById('result-text').innerText = response.text;
         document.getElementById('result-gif').src = response.gif;
         document.getElementById('result-gif').style.display = 'block';
+        }
 
         // Minimize controls and display the result area
         document.body.classList.add('controls-minimized');
@@ -100,4 +101,3 @@ async function checkPloughConditions() {
         document.getElementById('result-gif').style.display = 'none';
         }
     }
-}
