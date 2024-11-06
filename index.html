@@ -9,19 +9,19 @@
 <body>
     <h1>Should I Plough?</h1>
     <div id="controls">
-        <label for="soil-type">Select your soil type:</label>
+        <label for="soil-type">Soil type:</label>
         <select id="soil-type">
             <option value="clay">Clay</option>
             <option value="loam">Loam</option>
             <option value="sandy">Sandy</option>
         </select>
         
-        <label for="weather-today">What is the weather today?</label>
+        <label for="weather-today">Weather today?</label>
         <select id="weather-today">
-            <option value="Sunny">Sunny</option>
-            <option value="Windy">Windy</option>
-            <option value="Wet">Wet</option>
-            <option value="Frozen">Frozen</option>
+            <option value="Sunny">☀️ Sunny</option>
+            <option value="Windy">🍃 Windy</option>
+            <option value="Wet">🌧️ Raining</option>
+            <option value="Frozen">❄️ Freezing</option>
             <option value="Ideal">Ideal</option>
         </select>
         
@@ -34,13 +34,16 @@
         </select>
         
         <label for="regen-toggle">Regen Mode</label>
+        <label class="toggle-switch">
         <input type="checkbox" id="regen-toggle">
+        <span class="slider"></span>
+        </label>
         
         <button onclick="checkPloughConditions()">Should I Plough?</button>
     </div>
     <div id="result">
         <div id="result-text"></div>
-        <img id="result-gif" src="" alt="Response GIF" style="display: none;">
+        <img id="result-gif" src="" alt="Response GIF" >
     </div>
 
     <script src="script.js" defer></script>

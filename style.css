@@ -12,6 +12,10 @@ body {
     overflow: hidden;
 }
 
+h1 {
+    font-size: 3em;
+}
+
 /* Initial full screen layout for controls */
 #controls {
     display: flex;
@@ -20,13 +24,13 @@ body {
     justify-content: top;
     height: 100vh;
     width: 100%;
-    max-width: 400px;
     transition: all 0.5s ease;
 }
 
 label {
     margin: 10px 0 5px;
     font-weight: bold;
+    font-size: 0.9em;
     color: #ccc;
 }
 
@@ -54,43 +58,94 @@ button:hover {
     background-color: #888;
 }
 
-input[type="checkbox"] {
-    margin-right: 10px;
-    width: auto;
+/* Toggle switch styling */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin-left: 10px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #666;
+    transition: 0.4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+/* Checked state */
+.toggle-switch input:checked + .slider {
+    background-color: #2a9d8f;
+}
+
+.toggle-switch input:checked + .slider:before {
+    transform: translateX(26px);
 }
 
 /* Result area setup */
 #result {
     display: none; /* Initially hidden */
+    margin-top: 30px; /* Space for the fixed controls */
     text-align: center;
+    align-items: center;
+    align-content: center;
     padding: 20px;
     width: 100%;
-    max-width: 400px;
-    margin-top: 20px;
+    max-width: 800px;
 }
 
 #result-text {
     font-size: 1.8em;
     color: #fff;
-    margin-bottom: 15px;
+    margin-bottom: 35px;
+    max-width: 80%;
 }
 
 #result-gif {
-    max-width: 100%;
-    border-radius: 8px;
+    max-width: 800px;
+    width: 100%;
+    border-radius: 3px;
     border: 2px solid #333;
 }
 
 /* Minimized controls at top after selection */
 .controls-minimized #controls {
-    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    width: 100%;
+    background-color: #111;
     top: 0;
     left: 0;
-    width: 100%;
-    height: auto;
-    padding: 10px;
-    background-color: #111;
-    justify-content: flex-start;
+    z-index: 1000;
+    max-height: 80px;
 }
 
 .controls-minimized label,
@@ -98,9 +153,10 @@ input[type="checkbox"] {
 .controls-minimized button {
     font-size: 0.8em;
     max-width: 100px;
-    margin: 5px 0;
+    margin: 10px;
 }
 
 .controls-minimized #result {
-    display: block;
+    display: flex;
+    flex-direction: column;
 }
