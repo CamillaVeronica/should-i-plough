@@ -72,6 +72,20 @@ function selectRandomResponse(responses) {
     return responses[randomIndex];
 }
 
+// **Hamburger Menu Logic**: Toggles the visibility of the controls
+document.getElementById('hamburger-menu').addEventListener('click', function() {
+    const body = document.body;
+    
+    // Toggle between collapsed and expanded states
+    if (body.classList.contains('controls-collapsed')) {
+        body.classList.remove('controls-collapsed');
+        body.classList.add('controls-expanded');
+    } else {
+        body.classList.remove('controls-expanded');
+        body.classList.add('controls-collapsed');
+    }
+});
+
 // Checks plough conditions and displays the appropriate response
 async function checkPloughConditions() {
     console.clear(); // Clears previous logs on each button click
@@ -94,10 +108,16 @@ async function checkPloughConditions() {
         document.getElementById('result-gif').style.display = 'block';
         
 
-        // Minimize controls and display the result area
-        document.body.classList.add('controls-minimized');}
-     else {
+        // Show the result area
+        document.getElementById('result').style.display = 'flex';
+
+        // Minimize controls
+        document.body.classList.add('controls-minimized');
+    } else {
         document.getElementById('result-text').innerText = "No response available.";
         document.getElementById('result-gif').style.display = 'none';
-        }
+
+        // Show the result area even if there is no response
+        document.getElementById('result').style.display = 'flex';
     }
+}

@@ -9,23 +9,28 @@ body {
     background-color: #000;
     color: #fff;
     overflow-x: hidden;
-    overflow-y: auto;
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 2.5em;
+    margin: 20px 0;
+    text-align: center;
 }
 
-/* Initial full screen layout for controls */
+/* Controls container */
 #controls {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: top;
-    height: 100vh;
+    justify-content: center;
     width: 100%;
+    padding: 20px;
+    background-color: #111;
     transition: all 0.5s ease;
+    box-sizing: border-box;
+    z-index: 1000;
 }
+
 
 label {
     margin: 10px 0 5px;
@@ -56,6 +61,34 @@ button {
 
 button:hover {
     background-color: #888;
+}
+
+/* Hamburger menu button styling */
+.hamburger {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2em;
+    cursor: pointer;
+    margin-bottom: 10px;
+    z-index: 1001; /* Keep the hamburger menu above other elements */
+    display: block; /* Always display the hamburger button */
+}
+
+/* Hide controls when collapsed but keep the hamburger menu visible */
+.controls-collapsed #controls {
+    display: none;
+}
+
+/* Show controls when expanded */
+.controls-expanded #controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.controls-collapsed .hamburger {
+    display: block; /* Keep the hamburger menu visible */
 }
 
 /* Toggle switch styling */
@@ -97,7 +130,6 @@ button:hover {
     border-radius: 50%;
 }
 
-/* Checked state */
 .toggle-switch input:checked + .slider {
     background-color: #2a9d8f;
 }
@@ -108,62 +140,91 @@ button:hover {
 
 /* Result area setup */
 #result {
-    display: none; /* Initially hidden */
-    margin-top: 30px; /* Space for the fixed controls */
-    text-align: center;
+    display: none; /* Hide the result area by default */
+    flex-direction: column;
     align-items: center;
-    align-content: center;
+    justify-content: center;
+    margin-top: 20px;
+    text-align: center;
     padding: 20px;
     width: 100%;
     max-width: 800px;
+    box-sizing: border-box;
 }
 
 #result-text {
-    font-size: 1.3em;
+    font-size: 1.5em;
     color: #fff;
-    margin-bottom: 35px;
+    margin-bottom: 20px;
     max-width: 80%;
 }
 
 #result-gif {
-    max-width: 800px;
-    width: 100%;
+    max-width: 100%;
     border-radius: 3px;
     border: 2px solid #333;
-
 }
 
 #result button {
     max-width: 300px;
     font-size: 1em;
-    margin-top: 35px;
+    margin-top: 20px;
 }
 
-/* Minimized controls at top after selection */
+/* Minimized controls at top for wider viewports */
 .controls-minimized #controls {
-    display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
+    justify-content: space-between;
     padding: 10px;
     width: 100%;
     background-color: #111;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
-    max-height: 80px;
+    box-sizing: border-box;
 }
 
 .controls-minimized label,
 .controls-minimized select,
 .controls-minimized button {
     font-size: 0.8em;
-    max-width: 100px;
-    margin: 10px;
+    max-width: 120px;
+    margin: 5px;
 }
 
-.controls-minimized #result {
-    display: flex;
-    flex-direction: column;
+/* Responsive layout for narrow viewports */
+@media (max-width: 768px) {
+    #controls {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .controls-minimized #controls {
+        flex-direction: column;
+        align-items: center;
+        position: static;
+        padding: 10px;
+    }
+
+    #result {
+        margin-top: 20px;
+    }
+    .hamburger {
+        display: block;
+    }
+
+    /* Initially hide the controls when results are displayed */
+    .controls-collapsed #controls {
+        display: none;
+    }
+
+    /* Show controls when expanded */
+    .controls-expanded #controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
